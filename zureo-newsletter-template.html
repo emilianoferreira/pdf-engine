@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Reporte Zureo</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap');
+    </style>
+
+    <style>
+        @page {
+            size: 210mm 3240mm;
+            margin: 0;
+        }
+
+        html, body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            width: 210mm;
+            min-height: {{ $json.alturaFinal }};
+            color: #444;
+            line-height: 1.5;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        .main-wrapper {
+            width: 210mm;
+            min-height: {{ $json.alturaFinal }};
+            display: block;
+        }
+
+        .caratula-full {
+            height: 297mm;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            display: block;
+            line-height: 0;
+            font-size: 0;
+        }
+
+        .caratula-full img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .newsletter-body {
+            padding: 40px 80px;
+            background-color: white;
+        }
+
+        .header-sistema {
+            margin-bottom: 40px;
+            padding-bottom: 15px;
+        }
+
+        .header-sistema h1 {
+            font-family: 'Poppins', sans-serif !important;
+            margin: 0;
+            font-size: 32pt;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+
+        .fechas-header {
+            font-family: 'Poppins', sans-serif !important;
+            margin: 8px 0 0 0;
+            color: #777;
+            font-size: 11pt;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        .item-release {
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #ccc;
+            display: block;
+        }
+
+        .titulo-funcionalidad {
+            font-family: 'Poppins', sans-serif !important;
+            font-size: 20pt;
+            font-weight: 700;
+            line-height: 1.2;
+            margin: 0 0 5px 0;
+            display: block;
+        }
+
+        .subtitulo-tipo {
+            font-family: 'Poppins', sans-serif !important;
+            font-size: 16px;
+            font-weight: 600;
+            color: #555;
+            margin: 0 0 15px 0;
+            text-transform: none;
+            line-height: 1.4;
+        }
+
+        .det-txt {
+            display: block;
+            margin-bottom: 10px;
+            color: #444;
+            font-weight: 300;
+            line-height: 1.5;
+        }
+
+        .bloque-item {
+            margin-bottom: 6px;
+            font-size: 10.5pt;
+            line-height: 1.5;
+        }
+
+        .bloque-item.lista {
+            margin-left: 10px;
+        }
+
+        strong {
+            font-weight: 700;
+        }
+
+        .img-doc-container {
+            text-align: center;
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .img-doc-container img,
+        .img-crop-canvas {
+            border-radius: 6px;
+            border: 1px solid #e0e0e0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            display: block;
+            box-sizing: border-box;
+            max-width: 100%;
+        }
+
+        .img-crop-canvas {
+            background-repeat: no-repeat;
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-wrapper">
+        {{ $json.htmlFinal }}
+    </div>
+</body>
+</html>

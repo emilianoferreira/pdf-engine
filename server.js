@@ -15,7 +15,7 @@ async function getBrowser() {
         "--no-sandbox",
         "--disable-setuid-sandbox",
         "--disable-dev-shm-usage",
-        "--font-render-hinting=none",
+        "--font-render-hinting=medium",
       ],
     });
   }
@@ -28,15 +28,40 @@ app.post("/generate-pdf", async (req, res) => {
   try {
     const b = await getBrowser();
     const page = await b.newPage();
+    await page.setViewport({
+      width: options.viewportWidth || 1240,
+      height: options.viewportHeight || 1754,
+      deviceScaleFactor: options.deviceScaleFactor || 2,
+    });
+    await page.emulateMediaType("screen");
     await page.setContent(html, {
       waitUntil: "networkidle0",
       timeout: 30000,
+    });
+    await page.evaluate(async () => {
+      if (document.fonts?.ready) {
+        await document.fonts.ready;
+      }
+
+      const images = Array.from(document.images || []);
+      await Promise.all(
+        images.map(async (img) => {
+          if (img.complete && img.naturalWidth > 0) return;
+
+          await new Promise((resolve) => {
+            const done = () => resolve();
+            img.addEventListener("load", done, { once: true });
+            img.addEventListener("error", done, { once: true });
+          });
+        }),
+      );
     });
     const bodyHeight = await page.evaluate(() => document.body.scrollHeight);
     const pdfBuffer = await page.pdf({
       width: options.width || "210mm",
       height: options.height || bodyHeight + "px",
       printBackground: true,
+      preferCSSPageSize: false,
       margin: { top: 0, right: 0, bottom: 0, left: 0 },
     });
     await page.close();

@@ -3,15 +3,21 @@ const body = input.body?.content || [];
 const imagenesDoc = input.inlineObjects || {};
 
 // --- 1. CONFIGURACIÓN ---
-const imgInicio = "https://drive.google.com/thumbnail?id=1LNBozepwA3oQhbWZgoygU5p0R74_7lDV&sz=w1000";
-const imgCierre = "https://drive.google.com/thumbnail?id=1vtcoZyVxnG-aXvmbY9IuanVWyw3JLqT0&sz=w1000";
+const DRIVE_PRINT_WIDTH = 2480;
+
+function highResDriveThumbnail(id) {
+    return `https://drive.google.com/thumbnail?id=${id}&sz=w${DRIVE_PRINT_WIDTH}`;
+}
+
+const imgInicio = highResDriveThumbnail("1LNBozepwA3oQhbWZgoygU5p0R74_7lDV");
+const imgCierre = highResDriveThumbnail("1vtcoZyVxnG-aXvmbY9IuanVWyw3JLqT0");
 
 const caratulas = {
-    lite: "https://drive.google.com/thumbnail?id=1VXngSuNsLOisb9SxsxOuWYWZ1yM6fkeM&sz=w1000",
-    go:   "https://drive.google.com/thumbnail?id=17ZrbJgekCq4tCrVeu5rUyljuneNpLw4G&sz=w1000",
-    pdv:  "https://drive.google.com/thumbnail?id=1vaFI877zHe6xEUtOeqpNCursUszWCRUI&sz=w1000",
-    au:   "https://drive.google.com/thumbnail?id=1Qt5UaL4CAi5t0z_JY-Q69NYMW-ErJW2t&sz=w1000",
-    on:   "https://drive.google.com/thumbnail?id=1GTXg7Jgg4h8DSpJRRCtd0SVzftSmd_C-&sz=w1000"
+    lite: highResDriveThumbnail("1VXngSuNsLOisb9SxsxOuWYWZ1yM6fkeM"),
+    go:   highResDriveThumbnail("17ZrbJgekCq4tCrVeu5rUyljuneNpLw4G"),
+    pdv:  highResDriveThumbnail("1vaFI877zHe6xEUtOeqpNCursUszWCRUI"),
+    au:   highResDriveThumbnail("1Qt5UaL4CAi5t0z_JY-Q69NYMW-ErJW2t"),
+    on:   highResDriveThumbnail("1GTXg7Jgg4h8DSpJRRCtd0SVzftSmd_C-")
 };
 
 const colores = {

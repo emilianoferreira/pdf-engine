@@ -56,10 +56,20 @@ app.post("/generate-pdf", async (req, res) => {
         }),
       );
     });
-    const bodyHeight = await page.evaluate(() => document.body.scrollHeight);
+    const bodyHeight = await page.evaluate(() => {
+      const doc = document.documentElement;
+      const body = document.body;
+      return Math.max(
+        body.scrollHeight,
+        body.offsetHeight,
+        doc.clientHeight,
+        doc.scrollHeight,
+        doc.offsetHeight,
+      );
+    });
     const pdfBuffer = await page.pdf({
       width: options.width || "210mm",
-      height: options.height || bodyHeight + "px",
+      height: options.height || `${bodyHeight}px`,
       printBackground: true,
       preferCSSPageSize: false,
       margin: { top: 0, right: 0, bottom: 0, left: 0 },

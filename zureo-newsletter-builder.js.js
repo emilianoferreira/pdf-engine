@@ -39,7 +39,7 @@ const LAYOUT = {
     blankSpaceMm: pxToMm(15),        // el div inline tiene 15px
     imageGapMm: pxToMm(18),          // margen visual aproximado por imagen
     paragraphGapMm: pxToMm(8),       // separación visual entre bloques de texto
-    finalSafetyMm: 15                // margen de seguridad final pequeño, no 300
+    finalSafetyMm: 0                // sin colchón extra para evitar franja blanca al final
 };
 
 let htmlFinal = "";

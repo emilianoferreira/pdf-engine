@@ -10,7 +10,6 @@
 
     <style>
         @page {
-            size: 210mm 3240mm;
             margin: 0;
         }
 
@@ -24,6 +23,7 @@
             line-height: 1.5;
             -webkit-print-color-adjust: exact;
             print-color-adjust: exact;
+            background: #fff;
         }
 
         *, *::before, *::after {
@@ -34,6 +34,7 @@
             width: 210mm;
             min-height: {{ $json.alturaFinal }};
             display: block;
+            background: #fff;
         }
 
         .caratula-full {
@@ -56,6 +57,7 @@
         .newsletter-body {
             padding: 40px 80px;
             background-color: white;
+            width: 100%;
         }
 
         .header-sistema {

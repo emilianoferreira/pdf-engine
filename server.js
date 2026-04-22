@@ -29,9 +29,9 @@ app.post("/generate-pdf", async (req, res) => {
     const b = await getBrowser();
     const page = await b.newPage();
     await page.setViewport({
-      width: options.viewportWidth || 1240,
+      width: options.viewportWidth || 794, // 210mm in CSS px at 96 dpi
       height: options.viewportHeight || 1754,
-      deviceScaleFactor: options.deviceScaleFactor || 2,
+      deviceScaleFactor: options.deviceScaleFactor || 3.125, // 794 * 3.125 = 2481px ≈ 300 DPI
     });
     await page.emulateMediaType("screen");
     await page.setContent(html, {
